@@ -1,7 +1,7 @@
 ----------------------------
 ## Pre-configured Data: ##
 ----------------------------
-
+configure
 modify parameter-group system
 set name "S1-51K-D503-S1"
 save -f
@@ -78,90 +78,6 @@ set lldp policy test
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-10 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-11 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-12 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-13 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-14 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-15 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-16 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-17 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-18 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-19 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-20 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-21 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-22 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-23 }
-set enable yes
-set lldp enable yes
-set lldp policy test
-save -f
-
-modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-24 }
 set enable yes
 set lldp enable yes
 set lldp policy test
