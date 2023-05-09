@@ -1,0 +1,314 @@
+----------------------------
+## Pre-configured Data: ##
+----------------------------
+
+modify parameter-group system
+set name "BO-51E-D052-S2"
+save -f
+
+modify parameter-group system
+set lldp enable yes
+save -f
+create parameter-group lldp-policy test
+set management-address enable yes
+set management-address router system
+set tlv-filter enable yes
+add tlv-filter tlv-list system-name
+add tlv-filter tlv-list system-capabilities
+add tlv-filter tlv-list system-description
+add tlv-filter tlv-list port-description
+add tlv-filter tlv-list management-address
+add tlv-filter tlv-list mac-phy-configuration-status
+add tlv-filter tlv-list maximum-frame-size
+save -f
+
+configure
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-1 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-2 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-3 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-4 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-5 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-6 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-7 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-8 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-9 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-10 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-11 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-12 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-13 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-14 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-15 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-16 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-17 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-18 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-19 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-20 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-21 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-22 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-23 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-24 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+exit
+
+configure
+delete parameter-group interface management_vlan10
+y
+create parameter-group interface management_vlan10
+set enable yes
+set base virtual-port-address type integrated-vlan
+set integrated-vlan bridge system
+set integrated-vlan vlan enable yes
+set integrated-vlan vlan tag 10
+set integrated-vlan mtu 1500
+set ip router system
+set ip ipv4 enable yes
+set ip ipv4 address 10.112.137.253/25
+save -f
+exit
+
+configure
+delete parameter-group ip-route default
+y
+create parameter-group ip-route default
+set enable yes
+set router "system"
+set destination 0.0.0.0/0
+set next-hop gateway 10.112.137.129
+save -f
+exit
+
+configure
+create parameter-group ntp-association
+set enable yes
+add association { "system" "10.240.31.81" }
+enter association * at 1
+set enable yes
+set address router system
+set address host 10.240.31.81
+set boot-server yes
+set preferred yes
+save -f
+exit
+
+configure
+delete parameter-group tacacs-plus-server-group tsg
+y
+create parameter-group tacacs-plus-server-group 
+set name LIC-ISE
+set enable yes
+add server primary
+enter server primary
+set address router system
+set address host 10.240.15.18
+set shared-secret "Secure@$#!"
+set authentication enable yes
+set isolate-on-failure no
+leave
+add server secondary
+enter server secondary
+set address router system
+set address host 10.156.17.66
+set shared-secret "Secure@$#!"
+set authentication enable yes
+set isolate-on-failure no
+leave
+save -f
+exit
+
+configure
+delete parameter-group aaa-policy p1
+y
+create parameter-group aaa-policy p1
+set enable yes
+add scope authentication
+set match service management-cli
+set context "c1"
+save -f
+exit
+
+configure
+delete parameter-group aaa-context c1
+y
+create parameter-group aaa-context c1
+set enable yes
+add authentication order tacacs-plus
+add authentication order local
+enter authentication order tacacs-plus
+set server-group "LIC-ISE"
+leave
+leave
+save -f
+exit
+
+configure
+modify parameter-group router system
+set access snmp enable yes
+add access snmp allowed-versions snmp-version-2c
+save -f
+create parameter-group snmp-user V3nwmsl!ic
+set enable yes
+set authentication-protocol sha
+set authentication-password !nli<>1-2
+set privacy-protocol des
+set privacy-password rety&88hw(
+set access-control-group v3grouplic
+save -f
+create parameter-group snmp-context system
+set instance system
+save -f
+create parameter-group snmp-access-control-group V3grouplic
+set enable yes
+add context system
+enter context system
+set security sec-1
+leave
+save -f
+create parameter-group snmp-security-group sec-1
+add security usm
+enter security usm
+add views authentication-privacy
+enter views authentication-privacy
+set read-view ace-1
+set write-view ace-1
+leave
+leave
+save -f
+create parameter-group snmp-access-control-entry ace-1
+add mib-subtree .1
+save -f
+modify parameter-group snmp-notification
+set enable yes
+add server s3
+enter server s3
+set enable yes
+set address router system
+set address host 10.240.30.75
+set message-model type v3
+set message-model v3 user-name V3nwmsl!ic
+set message-model v3 security-model authentication-privacy
+set message-model v3 authentication-protocol sha
+set message-model v3 privacy-protocol des
+set message-model v3 authentication-password !nli<>1-2
+set message-model v3 privacy-password rety&88hw(
+leave
+save -f
+exit
+Troubleshooting:
