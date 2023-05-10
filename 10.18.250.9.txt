@@ -1,0 +1,143 @@
+----------------------------------------------------------
+## All configurations to be done in configure mode only ##
+----------------------------------------------------------
+
+configure
+Create parameter-group bridge-vlan 10
+set enable yes
+save -f
+
+Create parameter-group bridge-vlan 300
+set enable yes
+save -f
+
+modify parameter-group bridge system
+set address-spoof-check disable
+save -f
+
+---------------------------------------------------------------
+## LLDP configurations to be done in configure mode only ##
+---------------------------------------------------------------
+
+modify parameter-group system
+set lldp enable yes
+save -f
+create parameter-group lldp-policy test
+set management-address enable yes
+set management-address router system
+set tlv-filter enable yes
+add tlv-filter tlv-list system-name
+add tlv-filter tlv-list system-capabilities
+add tlv-filter tlv-list system-description
+add tlv-filter tlv-list port-description
+add tlv-filter tlv-list management-address
+add tlv-filter tlv-list mac-phy-configuration-status
+add tlv-filter tlv-list maximum-frame-size
+save -f
+
+----------------------------------------------------------------------------------------------
+## Enabling Gigabit Ethernet Physical Ports (port-1 to port-24) and making them access ports ##
+----------------------------------------------------------------------------------------------
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-23 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+
+modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-24 }
+set enable yes
+set lldp enable yes
+set lldp policy test
+save -f
+exit
+
+---
+--------------------------------------------------------------------------
+## Creating VLAN 300 interfaces on respective 1G access ports  ##
+--------------------------------------------------------------------------
+configure
+create parameter-group interface ge23-trunk-vlan-300
+set enable yes
+set encapsulation ethernet
+set base port-address type gigabit-ethernet
+set base port-address location shelf shelf-1
+set base port-address location slot slot-id active-controller
+set base port-address location slot sub-slot-id base-slot
+set base port-address location port port-id port-23
+set base port-address location port logical-port-id base-port
+set bridging address-learning-limit 16000
+set ethernet vlan enable yes
+set ethernet vlan tag 300
+set ethernet mtu selection manual
+set ethernet mtu value 1500
+set bridging enable yes
+set bridging bridge system
+save -f
+set name ge23-trunk-vlan-10
+set ethernet vlan enable yes
+set ethernet vlan tag 10
+save -f
+exit
+
+---
+
+configure
+create parameter-group interface ge24-trunk-vlan-300
+set enable yes
+set encapsulation ethernet
+set base port-address type gigabit-ethernet
+set base port-address location shelf shelf-1
+set base port-address location slot slot-id active-controller
+set base port-address location slot sub-slot-id base-slot
+set base port-address location port port-id port-24
+set base port-address location port logical-port-id base-port
+set bridging address-learning-limit 16000
+set ethernet vlan enable yes
+set ethernet vlan tag 300
+set ethernet mtu selection manual
+set ethernet mtu value 1500
+set bridging enable yes
+set bridging bridge system
+save -f
+set name ge24-trunk-vlan-10
+set ethernet vlan enable yes
+set ethernet vlan tag 10
+save -f
+exit
+
+---
+-----------------------------------------------------------
+## Creating Management VLAN 10 (L3) with IP 10.18.250.28 ##
+-----------------------------------------------------------
+
+configure
+delete parameter-group interface management_vlan10
+y
+
+create parameter-group interface management_vlan10
+set enable yes
+set base virtual-port-address type integrated-vlan
+set integrated-vlan bridge system
+set integrated-vlan vlan enable yes
+set integrated-vlan vlan tag 10
+set integrated-vlan mtu 1500
+set ip router system
+set ip ipv4 enable yes
+set ip ipv4 address 10.18.250.9/25
+save -f
+exit
+
+
+configure
+delete parameter-group ip-route default
+y
+
+create parameter-group ip-route default
+set enable yes
+set router "system"
+set destination 0.0.0.0/0
+set next-hop gateway 10.18.250.4
+save -f
+exit
+
+---
