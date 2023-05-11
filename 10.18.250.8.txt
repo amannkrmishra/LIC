@@ -1,12 +1,16 @@
-----------------------------------------
-## Basically for Additional Switch ##
-----------------------------------------
+------------------------------------------------------
+## Basically for Main Switch or Additional Switches ##
+------------------------------------------------------
 ----------------------------------------------------------
 ## All configurations to be done in configure mode only ##
 ----------------------------------------------------------
 
 configure
 Create parameter-group bridge-vlan 10
+set enable yes
+save -f
+
+Create parameter-group bridge-vlan 300
 set enable yes
 save -f
 
@@ -74,7 +78,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-2 }
@@ -82,7 +86,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-3 }
@@ -90,7 +94,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-4 }
@@ -98,7 +102,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 ---
@@ -109,7 +113,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-6 }
@@ -117,7 +121,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-7 }
@@ -125,7 +129,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-8 }
@@ -133,7 +137,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 ---
@@ -144,7 +148,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-10 }
@@ -152,7 +156,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-11 }
@@ -160,7 +164,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-12 }
@@ -168,7 +172,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 ---
@@ -179,7 +183,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-14 }
@@ -187,7 +191,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-15 }
@@ -195,7 +199,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-16 }
@@ -203,7 +207,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 ---
@@ -214,7 +218,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-18 }
@@ -222,7 +226,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-19 }
@@ -230,7 +234,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-20 }
@@ -238,7 +242,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 ---
@@ -249,7 +253,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-22 }
@@ -257,7 +261,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan tag 300
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-23 }
@@ -275,11 +279,11 @@ exit
 
 ---
 --------------------------------------------------------------------------
-## Creating VLAN 10 interfaces on respective 1G access ports  ##
+## Creating VLAN 300 interfaces on respective 1G access ports  ##
 --------------------------------------------------------------------------
 
 configure
-create parameter-group interface ge01-access-vlan-10
+create parameter-group interface ge01-access-vlan-300
 set enable yes
 set encapsulation ethernet
 set base port-address type gigabit-ethernet
@@ -290,7 +294,7 @@ set base port-address location port port-id port-1
 set base port-address location port logical-port-id base-port
 set bridging address-learning-limit 16000
 set ethernet vlan enable yes
-set ethernet vlan tag 10
+set ethernet vlan tag 300
 set ethernet mtu selection manual
 set ethernet mtu value 1500
 set bridging enable yes
@@ -299,79 +303,76 @@ save -f
 
 ---
 
-set name ge02-access-vlan-10
+set name ge02-access-vlan-300
 set base port-address location port port-id port-2
 save -f
-set name ge03-access-vlan-10
+set name ge03-access-vlan-300
 set base port-address location port port-id port-3
 save -f
-set name ge04-access-vlan-10
+set name ge04-access-vlan-300
 set base port-address location port port-id port-4
 save -f
-set name ge05-access-vlan-10
+set name ge05-access-vlan-300
 set base port-address location port port-id port-5
 save -f
-set name ge06-access-vlan-10
+set name ge06-access-vlan-300
 set base port-address location port port-id port-6
 save -f
 
 ---
 
-set name ge07-access-vlan-10
+set name ge07-access-vlan-300
 set base port-address location port port-id port-7
 save -f
-set name ge08-access-vlan-10
+set name ge08-access-vlan-300
 set base port-address location port port-id port-8
 save -f
-set name ge09-access-vlan-10
+set name ge09-access-vlan-300
 set base port-address location port port-id port-9
 save -f
-set name ge10-access-vlan-10
+set name ge10-access-vlan-300
 set base port-address location port port-id port-10
 save -f
-set name ge11-access-vlan-10
+set name ge11-access-vlan-300
 set base port-address location port port-id port-11
 save -f
 
 ---
 
-set name ge12-access-vlan-10
+set name ge12-access-vlan-300
 set base port-address location port port-id port-12
 save -f
-set name ge13-access-vlan-10
+set name ge13-access-vlan-300
 set base port-address location port port-id port-13
 save -f
-set name ge14-access-vlan-10
+set name ge14-access-vlan-300
 set base port-address location port port-id port-14
 save -f
-set name ge15-access-vlan-10
+set name ge15-access-vlan-300
 set base port-address location port port-id port-15
 save -f
-set name ge16-access-vlan-10
+set name ge16-access-vlan-300
 set base port-address location port port-id port-16
 save -f
 
 ---
 
-set name ge17-access-vlan-10
+set name ge17-access-vlan-300
 set base port-address location port port-id port-17
 save -f
-set name ge18-access-vlan-10
+set name ge18-access-vlan-300
 set base port-address location port port-id port-18
 save -f
-set name ge19-access-vlan-10
+set name ge19-access-vlan-300
 set base port-address location port port-id port-19
 save -f
-set name ge20-access-vlan-10
+set name ge20-access-vlan-300
 set base port-address location port port-id port-20
 save -f
-
----
-
-set name ge21-access-vlan-10
+set name ge21-access-vlan-300
 set base port-address location port port-id port-21
 save -f
-set name ge22-access-vlan-10
+set name ge22-access-vlan-300
 set base port-address location port port-id port-22
 save -f
 exit
@@ -379,7 +380,7 @@ exit
 ---
 
 configure
-create parameter-group interface ge23-trunk-vlan-10
+create parameter-group interface ge23-trunk-vlan-300
 set enable yes
 set encapsulation ethernet
 set base port-address type gigabit-ethernet
@@ -390,18 +391,22 @@ set base port-address location port port-id port-23
 set base port-address location port logical-port-id base-port
 set bridging address-learning-limit 16000
 set ethernet vlan enable yes
-set ethernet vlan tag 10
+set ethernet vlan tag 300
 set ethernet mtu selection manual
 set ethernet mtu value 1500
 set bridging enable yes
 set bridging bridge system
+save -f
+set name ge23-trunk-vlan-10
+set ethernet vlan enable yes
+set ethernet vlan tag 10
 save -f
 exit
 
 ---
 
 configure
-create parameter-group interface ge24-trunk-vlan-10
+create parameter-group interface ge24-trunk-vlan-300
 set enable yes
 set encapsulation ethernet
 set base port-address type gigabit-ethernet
@@ -412,11 +417,15 @@ set base port-address location port port-id port-24
 set base port-address location port logical-port-id base-port
 set bridging address-learning-limit 16000
 set ethernet vlan enable yes
-set ethernet vlan tag 10
+set ethernet vlan tag 300
 set ethernet mtu selection manual
 set ethernet mtu value 1500
 set bridging enable yes
 set bridging bridge system
+save -f
+set name ge24-trunk-vlan-10
+set ethernet vlan enable yes
+set ethernet vlan tag 10
 save -f
 exit
 
@@ -456,12 +465,6 @@ set enable yes
 set router "system"
 set destination 0.0.0.0/0
 set next-hop gateway 10.18.250.4
-save -f
-exit
-
-configure
-modify parameter-group router system
-set access telnet-server enable yes
 save -f
 exit
 
