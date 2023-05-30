@@ -264,8 +264,6 @@ modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot 
 set enable yes
 set lldp enable yes
 set lldp policy test
-set default-vlan enable yes
-set default-vlan tag 10
 save -f
 
 modify parameter-group gigabit-ethernet { shelf-1 { active-controller base-slot } port-24 }
@@ -376,8 +374,27 @@ save -f
 set name ge22-access-vlan-10
 set base port-address location port port-id port-22
 save -f
-set name ge23-access-vlan-10
+exit
+
+---
+
+configure
+create parameter-group interface ge23-trunk-vlan-10
+set enable yes
+set encapsulation ethernet
+set base port-address type gigabit-ethernet
+set base port-address location shelf shelf-1
+set base port-address location slot slot-id active-controller
+set base port-address location slot sub-slot-id base-slot
 set base port-address location port port-id port-23
+set base port-address location port logical-port-id base-port
+set bridging address-learning-limit 16000
+set ethernet vlan enable yes
+set ethernet vlan tag 10
+set ethernet mtu selection manual
+set ethernet mtu value 1500
+set bridging enable yes
+set bridging bridge system
 save -f
 exit
 
