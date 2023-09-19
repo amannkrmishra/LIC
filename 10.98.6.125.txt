@@ -94,8 +94,7 @@ set enable yes
 set lldp enable yes
 set lldp policy test
 set spanning-tree enable yes
-set default-vlan enable yes
-set default-vlan tag 10
+set default-vlan enable no
 save -f
 
 ------------------------------------------
