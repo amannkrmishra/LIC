@@ -1,0 +1,51 @@
+en
+
+
+
+copy usb0:c1100-universalk9.17.03.06.SPA.bin bootflash:
+
+
+
+
+Verify /md5 bootflash:c1100-universalk9.17.03.06.SPA.bin
+
+
+
+
+
+config t
+
+
+
+boot system flash bootflash:c1100-universalk9.17.03.06.SPA.bin
+
+
+
+do wr
+
+
+
+do controlller-mode en
+
+
+
+
+
+pnpa service discovery stop
+
+
+
+
+
+
+
+
+config-t
+
+
+
+
+commands, etc.
+
+
+
