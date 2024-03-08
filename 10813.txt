@@ -1,0 +1,97 @@
+TATA_ILL_SDWAN_BASIC
+
+
+10813
+
+
+system 
+system-ip 10.239.63.106
+site-id 101113889
+sp-organization-name HDFCBANK
+organization-name HDFCBANK
+vbond vbond-prod.hdfcbank.com port 12346
+controller-group-list 1 2 3 4
+!
+hostname HB10813R0
+
+!
+ip host vbond-prod.hdfcbank.com 10.255.5.4 10.255.5.5 10.255.2.4 10.255.2.5 103.120.107.101 103.120.107.102
+!
+interface GigabitEthernet0/0/1
+no shut
+ip address 14.142.231.154 255.255.255.252
+!
+
+ip route 0.0.0.0 0.0.0.0 14.142.231.153
+
+ip route 1.1.1.1 255.255.255.255 14.142.231.153
+
+!
+interface Tunnel1
+no shutdown
+ip unnumbered GigabitEthernet0/0/1
+tunnel source GigabitEthernet0/0/1
+tunnel mode sdwan
+exit
+!
+sdwan
+interface GigabitEthernet0/0/1
+tunnel-interface
+encapsulation ipsec
+color biz-internet restrict
+allow-service all
+exit
+
+
+Switch basic configuration  
+---------------------------------------------------------------
+
+Pls Note: Switch IOS Version ( c2960-lanbasek9-mz.15.2.7E(4).bin)
+en
+conf t
+ena sec cisco
+line vty 0 4
+no acc 23 in
+pass cisco
+login
+transport input all
+exit
+!
+
+int vlan1
+no shut
+ip add 10.122.126.148 255.255.255.192
+exit
+!
+ip default-gateway 10.122.126.129
+
+int range G0/1-2
+Switchport mode trunk
+
+
+!
+
+================
+int vlan1
+no shut
+ip add 10.122.126.147 255.255.255.192
+exit
+!
+ip default-gateway 10.122.126.129
+
+int range G0/1-2
+Switchport mode trunk
+
+
+!
+
+
+
+
+
+
+
+
+10054
+
+ Rjio 10.102.126.50 10.102.126.49
