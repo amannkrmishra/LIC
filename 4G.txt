@@ -1,0 +1,84 @@
+en
+conf t
+ena sec cisco
+line vty 0 4
+no acc 23 in
+pass cisco
+login
+transport input all
+exit
+
+
+
+int G0/0/0
+no shut
+desc *** Bharti-4G ***
+ip add 	10.101.163.186 255.255.255.0
+ip route  10.239.57.121 255.255.255.255 GigabitEthernet0/0/0 10.101.163.1 200 name AIRTEL4G_MPLS
+ip route 0.0.0.0 0.0.0.0 10.101.163.1 110
+
+
+int G0/0/1
+no shut
+desc *** ISP-2 ***
+
+
+int l101
+ip address 10.239.57.122 255.255.255.255
+desc *** Loopback for Bharti 4G ***
+
+
+int l100
+ip address 10.239.62.134 255.255.255.255
+no shut
+
+
+
+router bgp 65005
+ no synchronization
+ bgp log-neighbor-changes
+ bgp update-delay 5
+ network 10.239.62.134 mask 255.255.255.255
+ neighbor  10.239.57.122 remote-as 9730
+ neighbor  10.239.57.122 ebgp-multihop 10
+ neighbor  10.239.57.122 update-source Loopback101
+ neighbor  10.239.57.122 soft-reconfiguration inbound
+ neighbor  10.239.57.122 route-map AIRTEL4GIN in
+ neighbor  10.239.57.122 route-map AIRTEL4GOUT out
+
+route-map AIRTEL4GIN permit 10
+ match ip address 20
+route-map AIRTEL4GOUT permit 10
+ match ip address 25
+ set community 9730:1 additive
+
+access-list 20 permit 0.0.0.0	
+access-list 20 deny any
+access-list 25 permit 10.239.62.134
+access-list 25 deny any
+
+
+
+int vlan1
+sh
+
+vlan 10
+
+int vlan10
+no shut
+ip add 10.163.77.193 255.255.255.192
+
+
+
+exit
+
+!
+!
+!
+ip dhcp pool LANPOOL
+ network 10.163.77.192 255.255.255.192
+ default-router 10.163.77.193
+ dns-server 10.1.7.253 10.225.6.214 
+ netbios-node-type m-node
+ lease 30
+!!
