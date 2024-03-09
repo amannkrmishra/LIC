@@ -1,0 +1,110 @@
+
+system
+system-ip 10.239.63.68
+site-id 101113890
+sp-organization-name HDFCBANK
+organization-name HDFCBANK
+vbond vbond-prod.hdfcbank.com port 12346
+controller-group-list 1 2 3 4
+!
+hostname HB8519R0
+
+!
+ip host vbond-prod.hdfcbank.com 10.255.5.4 10.255.5.5 10.255.2.4 10.255.2.5 103.120.107.101 103.120.107.102 175.100.161.148 175.100.161.149
+!
+interface GigabitEthernet0/0/0
+no shut
+ip address 10.102.196.234 55.255.255.252
+!
+ip route 0.0.0.0 0.0.0.0 10.102.196.233
+!
+interface Tunnel0
+no shutdown
+ip unnumbered GigabitEthernet0/0/0
+tunnel source GigabitEthernet0/0/0
+tunnel mode sdwan
+exit
+!
+sdwan
+interface GigabitEthernet0/0/0
+tunnel-interface
+encapsulation ipsec
+color private1 restrict
+allow-service all
+exit
+
+
+--------------------------------------------------
+
+vbond vbond-prod.hdfcbank.com port 12346
+controller-group-list 1 2 3 4
+!
+hostname HB11858R0
+
+!
+ip host vbond-prod.hdfcbank.com 10.255.5.4 10.255.5.5 10.255.2.4 10.255.2.5 103.120.107.101 103.120.107.102 175.100.161.148 175.100.161.149
+!
+interface GigabitEthernet0/0/1
+no shut
+ip address 1.6.247.247 255.255.255.254
+!
+
+ip route 0.0.0.0 0.0.0.0 1.6.247.246
+
+ip route 1.1.1.1 255.255.255.255 1.6.247.246
+
+!
+interface Tunnel1
+no shutdown
+ip unnumbered GigabitEthernet0/0/1
+tunnel source GigabitEthernet0/0/1
+tunnel mode sdwan
+exit
+!
+sdwan
+interface GigabitEthernet0/0/1
+tunnel-interface
+encapsulation ipsec
+color biz-internet restrict
+allow-service all
+exit
+
+
+
+
+---------------------------------------------------------------
+Switch basic configuration  
+---------------------------------------------------------------
+
+Pls Note: Switch IOS Version ( c2960-lanbasek9-mz.15.2.7E(4).bin)
+en
+conf t
+ena sec cisco
+line vty 0 4
+no acc 23 in
+pass cisco
+login
+transport input all
+exit
+!
+
+int vlan1
+no shut
+ip add 10.163.48.20 255.255.255.192
+exit
+!
+ip default-gateway 10.163.48.1
+
+
+
+
+
+
+
+int range G0/1-2
+Switchport mode trunk
+
+
+!
+
+
