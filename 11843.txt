@@ -1,0 +1,116 @@
+BASIC CONFIGURATION || 11843
+
+
+
+
+NOTE:Router backup commands
+________________________________________________________________
+1- terminal lenght 0
+2- sh run
+3- sh ip int brief
+4- sh int desc
+5- sh run | sec ip ro
+6- sh cloc
+
+NOTE:Switch backup commands
+________________________________________________________________
+1- terminal lenght 0
+2- sh run
+3- Sh ver
+4- sh ip int brief
+5- sh cloc
+
+-----------------------------------------------------------------
+Router Basic configuration
+-----------------------------------------------------------------
+Pls Note: ROUTER IOS Version (c1100-universalk9.17.03.06.SPA.bin)
+
+en
+conf t
+hostname HB11843R1
+ena sec cisco
+line vty 0 4
+no acc 23 in
+pass cisco
+login
+transport input all
+exit
+
+
+int G0/0/0
+no shut
+ip address 10.102.222.126 255.255.255.252
+desc *** SIFY***
+ip route 0.0.0.0 0.0.0.0 10.102.222.125
+
+
+int G0/0/1
+no shut
+ip address 10.102.218.234 255.255.255.252
+desc *** RJIO ***
+ip route 0.0.0.0 0.0.0.0 10.102.218.233
+
+int vlan1
+shut
+
+int vlan10
+no shut
+ip add 10.163.196.193 255.255.255.192
+
+exit
+
+!
+!
+!
+ip dhcp pool LANPOOL
+ network 10.163.196.192 255.255.255.192
+ default-router 10.163.196.193
+ dns-server 10.1.7.253 10.225.6.214 
+ netbios-node-type m-node
+ lease 30
+!!
+
+
+---------------------------------------------------------------
+Switch basic configuration  
+---------------------------------------------------------------
+
+Pls Note: Switch IOS Version ( c2960-lanbasek9-mz.15.2.7E(4).bin)
+en
+conf t
+ena sec cisco
+line vty 0 4
+no acc 23 in
+pass cisco
+login
+transport input all
+exit
+!
+
+
+
+int vlan1
+sh
+
+vlan 10
+
+
+int vlan10
+no shut
+ip add 10.163.196.212 255.255.255.192
+exit
+!
+ip default-gateway 10.163.196.193
+
+
+
+
+
+!
+!
+int range Gi1/0/1-4
+Switchport mode trunk
+
+
+
+
